@@ -2,7 +2,7 @@
 
 export const contact = {
 	phone: '[DOPLNIT TELEFON]',
-	email: '[DOPLNIT E-MAIL]',
+	email: 'info@pecesuctou.cz',
 	area: 'Praha a okolí',
 	operator: '[Provozovatel, IČO, sídlo – doplnit]',
 };
