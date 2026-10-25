@@ -1,0 +1,63 @@
+---
+import { steps } from '../data/content';
+---
+
+<section class="section steps-section" id="jak-to-funguje">
+	<div class="wrap">
+		<p class="eyebrow">Jak to funguje</p>
+		<h2>Jednoduše, v pěti krocích</h2>
+		<ol>
+			{
+				steps.map((step, i) => (
+					<li>
+						<span class:list={['num', { last: i === steps.length - 1 }]}>{i + 1}</span>
+						<p>{step}</p>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.steps-section {
+		background: var(--cream-light);
+	}
+
+	ol {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 2rem;
+		margin: 3rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.num {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-bottom: 1rem;
+		border-radius: 50%;
+		background: var(--green);
+		color: #fff;
+		font-family: var(--serif);
+		font-size: 1.15rem;
+	}
+
+	.num.last {
+		background: var(--gold);
+	}
+
+	li p {
+		font-size: 0.95rem;
+	}
+
+	@media (max-width: 860px) {
+		ol {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

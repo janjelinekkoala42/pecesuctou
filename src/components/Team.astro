@@ -1,0 +1,65 @@
+---
+import { team } from '../data/content';
+---
+
+<section class="section" id="o-nas">
+	<div class="wrap">
+		<p class="eyebrow">O nás</p>
+		<h2>Kdo se o hroby stará</h2>
+		<p class="lead">
+			Péče s úctou je malá rodinná služba. Nejsme anonymní firma: na hřbitov jezdíme osobně a květiny připravujeme
+			samy.
+		</p>
+		<div class="people">
+			{
+				team.map((person) => (
+					<article>
+						<div class="ph portrait">[{person.photo}]</div>
+						<h3>{person.name}</h3>
+						<p class="role">{person.role}</p>
+						<p class="text">{person.text}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.people {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+		margin-top: 3rem;
+	}
+
+	.portrait {
+		aspect-ratio: 1 / 1;
+		margin-bottom: 1.25rem;
+		border-radius: 50% 50% 0 0 / 50% 50% 0 0;
+	}
+
+	h3 {
+		font-size: 2rem;
+	}
+
+	.role {
+		margin: 0.25rem 0 0.75rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--muted);
+	}
+
+	.text {
+		font-size: 0.95rem;
+	}
+
+	@media (max-width: 860px) {
+		.people {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+	}
+</style>

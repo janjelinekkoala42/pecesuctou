@@ -1,4 +1,8 @@
 ---
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/400-italic.css';
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource-variable/source-sans-3';
 import { environmentName, isProduction } from '../env';
 
 interface Props {
@@ -7,8 +11,8 @@ interface Props {
 }
 
 const {
-	title = 'Peče s úctou',
-	description = 'Peče s úctou – poctivé pečení s respektem k surovinám i lidem.',
+	title = 'Péče s úctou – úklid a péče o hroby v Praze a okolí',
+	description = 'Péče s úctou – úklid, údržba a výzdoba hrobů v Praze a okolí. Jednorázově i pravidelně, s fotografiemi po každé návštěvě.',
 } = Astro.props;
 ---
 
@@ -16,9 +20,9 @@ const {
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+		<meta name="theme-color" content="#1f3a2d" />
 		<meta name="generator" content={Astro.generator} />
 		{!isProduction && <meta name="robots" content="noindex, nofollow" />}
 		<title>{isProduction ? title : `[${environmentName}] ${title}`}</title>
@@ -31,31 +35,143 @@ const {
 
 <style is:global>
 	:root {
-		--bg: #faf6f0;
-		--text: #3b2f25;
-		--accent: #b5653a;
-		--muted: #7a6a5c;
-		font-family: Georgia, 'Times New Roman', serif;
-		color: var(--text);
-		background: var(--bg);
+		--cream: #f3eee7;
+		--cream-light: #faf7f2;
+		--sand: #ded6c6;
+		--sage: #c9d3c8;
+		--green: #1f3a2d;
+		--green-soft: #2d4a3c;
+		--gold: #b8893c;
+		--text: #1f2a24;
+		--muted: #5c645f;
+		--line: #e0d9cd;
+		--serif: 'Cormorant Garamond', Georgia, serif;
+		--sans: 'Source Sans 3 Variable', system-ui, sans-serif;
+		--wrap: 1200px;
 	}
 
-	* {
+	*,
+	*::before,
+	*::after {
 		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		scroll-padding-top: 6rem;
 	}
 
 	body {
 		margin: 0;
+		background: var(--cream);
+		color: var(--text);
+		font-family: var(--sans);
+		font-size: 1.0625rem;
 		line-height: 1.6;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	h1,
+	h2,
+	h3 {
+		margin: 0;
+		font-family: var(--serif);
+		font-weight: 400;
+		line-height: 1.1;
+		color: var(--green);
+	}
+
+	h2 {
+		font-size: clamp(2.25rem, 5vw, 3rem);
+	}
+
+	h3 {
+		font-size: 1.75rem;
+	}
+
+	p {
+		margin: 0;
 	}
 
 	a {
-		color: var(--accent);
+		color: inherit;
+	}
+
+	img {
+		max-width: 100%;
+		display: block;
+	}
+
+	.wrap {
+		max-width: var(--wrap);
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	.section {
+		padding: 5rem 0;
+	}
+
+	.eyebrow {
+		margin-bottom: 1rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--muted);
+	}
+
+	.lead {
+		max-width: 38rem;
+		margin-top: 1rem;
+		color: var(--text);
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.9rem 1.6rem;
+		border: 1px solid var(--green);
+		background: var(--green);
+		color: #fff;
+		font: 600 0.95rem var(--sans);
+		text-decoration: none;
+		cursor: pointer;
+		transition: background 0.2s, color 0.2s;
+	}
+
+	.btn:hover {
+		background: var(--green-soft);
+	}
+
+	.btn-outline {
+		background: transparent;
+		color: var(--green);
+	}
+
+	.btn-outline:hover {
+		background: var(--green);
+		color: #fff;
+	}
+
+	/* Místa pro fotky, dokud nedodáme skutečné */
+	.ph {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		background: var(--sand);
+		color: #6f6a5e;
+		font-size: 0.7rem;
+		letter-spacing: 0.15em;
+		text-align: center;
+		text-transform: uppercase;
 	}
 
 	.env-badge {
 		position: fixed;
-		right: 0.75rem;
+		left: 0.75rem;
 		bottom: 0.75rem;
 		z-index: 1000;
 		padding: 0.25rem 0.75rem;

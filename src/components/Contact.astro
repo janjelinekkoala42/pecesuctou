@@ -1,0 +1,257 @@
+---
+import { contact, services } from '../data/content';
+
+// Kam formulář posílá data. Dokud není služba pro odesílání vybraná, zůstává prázdné
+// a formulář místo odeslání ukáže kontakty.
+const endpoint = '';
+---
+
+<section class="section contact" id="kontakt">
+	<div class="wrap grid">
+		<div>
+			<p class="eyebrow">Kontakt</p>
+			<h2>Svěřte péči o hrob nám</h2>
+			<p class="lead">
+				Napište nám, o jakou péči máte zájem. Ozveme se vám, společně probereme vaše přání a domluvíme další
+				postup.
+			</p>
+			<dl>
+				<div><dt>Telefon:</dt><dd>{contact.phone}</dd></div>
+				<div><dt>E-mail:</dt><dd>{contact.email}</dd></div>
+				<div><dt>Kde působíme:</dt><dd>{contact.area}</dd></div>
+			</dl>
+			<p class="note">Odeslání formuláře je nezávazné. Nejde o objednávku ani platbu.</p>
+		</div>
+
+		<form id="poptavka" method="post" action={endpoint || undefined} data-endpoint={endpoint} novalidate>
+			<div class="row">
+				<label>
+					Jméno a příjmení *
+					<input name="jmeno" autocomplete="name" required />
+				</label>
+				<label>
+					E-mail *
+					<input name="email" type="email" autocomplete="email" required />
+				</label>
+			</div>
+			<div class="row">
+				<label>
+					Telefon *
+					<input name="telefon" type="tel" autocomplete="tel" required />
+				</label>
+				<label>
+					Město a název hřbitova *
+					<input name="hrbitov" placeholder="např. Praha, Olšanské hřbitovy" required />
+				</label>
+			</div>
+			<label>
+				Vybraný balíček *
+				<select name="balicek" required>
+					<option value="">Vyberte službu…</option>
+					{services.map((s) => <option value={s.id}>{s.title}</option>)}
+					<option value="jine">Něco jiného / nevím</option>
+				</select>
+			</label>
+			<label>
+				<span>Zpráva nebo zvláštní přání <span class="opt">(nepovinné)</span></span>
+				<textarea name="zprava" rows="5"></textarea>
+			</label>
+			<label class="consent">
+				<input type="checkbox" name="souhlas" required />
+				<span>
+					Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.
+					<a href="/zasady-ochrany-osobnich-udaju">Zásady zpracování osobních údajů</a>
+				</span>
+			</label>
+			<p class="status" role="status" aria-live="polite"></p>
+			<button class="btn" type="submit">Nezávazně poptat péči</button>
+		</form>
+	</div>
+</section>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('#poptavka');
+	const status = form?.querySelector<HTMLElement>('.status');
+	const select = form?.querySelector<HTMLSelectElement>('select[name="balicek"]');
+
+	// Tlačítka „Nezávazně poptat“ u služeb rovnou předvyplní balíček.
+	document.querySelectorAll<HTMLAnchorElement>('a[data-service]').forEach((link) => {
+		link.addEventListener('click', () => {
+			if (select) select.value = link.dataset.service ?? '';
+		});
+	});
+
+	form?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		if (!status) return;
+
+		if (!form.checkValidity()) {
+			form.classList.add('validated');
+			status.textContent = 'Vyplňte prosím všechna povinná pole a potvrďte souhlas.';
+			status.dataset.state = 'error';
+			return;
+		}
+
+		const endpoint = form.dataset.endpoint;
+		if (!endpoint) {
+			status.textContent = 'Formulář zatím není aktivní. Zavolejte nám prosím nebo napište e-mail.';
+			status.dataset.state = 'error';
+			return;
+		}
+
+		const button = form.querySelector('button');
+		button?.setAttribute('disabled', '');
+		try {
+			const response = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+			if (!response.ok) throw new Error(String(response.status));
+			form.reset();
+			form.classList.remove('validated');
+			status.textContent = 'Děkujeme, poptávku jsme přijali. Brzy se vám ozveme.';
+			status.dataset.state = 'ok';
+		} catch {
+			status.textContent = 'Odeslání se nepovedlo. Zkuste to prosím znovu nebo nám zavolejte.';
+			status.dataset.state = 'error';
+		} finally {
+			button?.removeAttribute('disabled');
+		}
+	});
+</script>
+
+<style>
+	.contact {
+		background: var(--cream-light);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 0.8fr 1.2fr;
+		gap: 4rem;
+		align-items: start;
+	}
+
+	dl {
+		margin: 2rem 0 1.5rem;
+	}
+
+	dl div {
+		display: flex;
+		gap: 0.35rem;
+		margin-bottom: 0.4rem;
+	}
+
+	dt {
+		font-weight: 700;
+	}
+
+	dd {
+		margin: 0;
+	}
+
+	.note {
+		font-size: 0.85rem;
+		color: var(--muted);
+	}
+
+	form {
+		display: grid;
+		gap: 1.1rem;
+		padding: 2rem;
+		border: 1px solid var(--line);
+		background: var(--cream);
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.1rem;
+	}
+
+	label {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+	}
+
+	.opt {
+		font-weight: 400;
+		color: var(--muted);
+	}
+
+	input,
+	select,
+	textarea {
+		width: 100%;
+		padding: 0.75rem 0.85rem;
+		border: 1px solid #cfc6b6;
+		border-radius: 0;
+		background: #fff;
+		color: var(--text);
+		font: 400 1rem var(--sans);
+	}
+
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: 2px solid var(--gold);
+		outline-offset: 1px;
+	}
+
+	.validated :invalid {
+		border-color: #b3261e;
+	}
+
+	.consent {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		font-weight: 400;
+	}
+
+	.consent input {
+		width: 1.15rem;
+		height: 1.15rem;
+		flex: none;
+		margin-top: 0.15rem;
+		padding: 0;
+		accent-color: var(--green);
+	}
+
+	.consent a {
+		display: block;
+		color: var(--green);
+	}
+
+	.status:empty {
+		display: none;
+	}
+
+	.status[data-state='error'] {
+		color: #b3261e;
+	}
+
+	.status[data-state='ok'] {
+		color: var(--green);
+		font-weight: 600;
+	}
+
+	button[disabled] {
+		opacity: 0.6;
+		cursor: wait;
+	}
+
+	@media (max-width: 860px) {
+		.grid {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+
+		.row {
+			grid-template-columns: 1fr;
+		}
+
+		form {
+			padding: 1.25rem;
+		}
+	}
+</style>

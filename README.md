@@ -1,6 +1,6 @@
-# Peče s úctou
+# Péče s úctou
 
-Web projektu Peče s úctou, postavený na [Astro](https://astro.build).
+Web služby Péče s úctou (péče o hroby v Praze a okolí), postavený na [Astro](https://astro.build).
 
 ## Vývoj
 
@@ -14,3 +14,7 @@ npm run preview  # náhled buildu
 ## Prostředí a nasazení
 
 Větev `main` je produkce (pecesuctou.cz), větev `dev` je vývojové prostředí (dev.pecesuctou.cz). Postup nasazení a nastavení účtů je v [NASAZENI.md](NASAZENI.md).
+
+## Úprava textů
+
+Všechny texty webu (služby, ceny, tým, časté otázky, kontakty) jsou v `src/data/content.ts`. Hodnoty v [hranatých závorkách] je potřeba doplnit.

@@ -1,0 +1,51 @@
+---
+import { cemeteries } from '../data/content';
+---
+
+<section class="section">
+	<div class="wrap grid">
+		<div>
+			<p class="eyebrow">Kde pečujeme</p>
+			<h2>Péče o hroby v Praze a okolí</h2>
+			<p class="lead">
+				Staráme se o hroby na pražských hřbitovech a v blízkém okolí Prahy. Váš hřbitov v seznamu nevidíte?
+				Napište nám – rádi ověříme, zda tam můžeme pečovat.
+			</p>
+		</div>
+		<ul>
+			{cemeteries.map((name) => <li>{name}</li>)}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		padding: 0.6rem 0.9rem;
+		border: 1px solid var(--line);
+		background: var(--cream-light);
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 860px) {
+		.grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+</style>

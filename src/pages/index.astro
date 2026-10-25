@@ -1,59 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Steps from '../components/Steps.astro';
+import Area from '../components/Area.astro';
+import Why from '../components/Why.astro';
+import Team from '../components/Team.astro';
+import References from '../components/References.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
-	<header>
-		<p class="brand">Peče s úctou</p>
-	</header>
-
+	<Header />
 	<main>
-		<section class="hero">
-			<h1>Poctivé pečení s úctou</h1>
-			<p>K surovinám, k řemeslu i k lidem, pro které pečeme.</p>
-		</section>
+		<Hero />
+		<Services />
+		<Steps />
+		<Area />
+		<Why />
+		<Team />
+		<References />
+		<Faq />
+		<Contact />
 	</main>
-
-	<footer>
-		<p>&copy; {new Date().getFullYear()} Peče s úctou</p>
-	</footer>
+	<Footer />
 </Layout>
-
-<style>
-	header,
-	main,
-	footer {
-		max-width: 960px;
-		margin: 0 auto;
-		padding: 1.5rem 1rem;
-	}
-
-	.brand {
-		margin: 0;
-		font-size: 1.25rem;
-		font-weight: bold;
-		color: var(--accent);
-	}
-
-	.hero {
-		padding: 6rem 0;
-		text-align: center;
-	}
-
-	.hero h1 {
-		margin: 0 0 1rem;
-		font-size: clamp(2rem, 6vw, 3.5rem);
-	}
-
-	.hero p {
-		margin: 0;
-		font-size: 1.25rem;
-		color: var(--muted);
-	}
-
-	footer {
-		color: var(--muted);
-		font-size: 0.875rem;
-		text-align: center;
-	}
-</style>

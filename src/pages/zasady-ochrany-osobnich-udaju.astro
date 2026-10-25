@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { contact } from '../data/content';
+---
+
+<Layout title="Zásady zpracování osobních údajů – Péče s úctou">
+	<Header />
+	<main class="section">
+		<article class="wrap text">
+			<p class="eyebrow">Ochrana osobních údajů</p>
+			<h1>Zásady zpracování osobních údajů</h1>
+			<p class="draft">
+				Pracovní verze – před spuštěním webu je potřeba doplnit údaje v hranatých závorkách a text nechat
+				zkontrolovat.
+			</p>
+
+			<h2>Kdo vaše údaje zpracovává</h2>
+			<p>Správcem osobních údajů je {contact.operator}. Kontakt: {contact.email}, {contact.phone}.</p>
+
+			<h2>Jaké údaje zpracováváme a proč</h2>
+			<p>
+				Když vyplníte poptávkový formulář, zpracováváme vaše jméno a příjmení, e-mail, telefon, název hřbitova,
+				vybranou službu a text vaší zprávy. Údaje používáme jen k tomu, abychom vás mohli kontaktovat, připravit
+				nabídku a případně poskytnout objednanou péči o hrob.
+			</p>
+
+			<h2>Právní základ</h2>
+			<p>
+				Údaje zpracováváme na základě vašeho souhlasu a pro jednání o uzavření smlouvy a její plnění (čl. 6 odst. 1
+				písm. a) a b) GDPR). Pokud službu objednáte, některé údaje uchováváme také kvůli účetním a daňovým
+				povinnostem.
+			</p>
+
+			<h2>Jak dlouho údaje uchováváme</h2>
+			<p>
+				Údaje z poptávky, která nevedla k objednávce, mažeme nejpozději do [doplnit, např. 12 měsíců]. Údaje
+				zákazníků uchováváme po dobu trvání služby a dále jen tak dlouho, jak to vyžadují právní předpisy.
+			</p>
+
+			<h2>Komu údaje předáváme</h2>
+			<p>
+				Údaje neprodáváme ani nepředáváme dalším firmám pro marketing. Mohou je zpracovávat pouze naši techničtí
+				dodavatelé (hosting webu, e-mail) v rozsahu nutném pro provoz služby. [Doplnit konkrétní dodavatele.]
+			</p>
+
+			<h2>Fotografie</h2>
+			<p>
+				Fotografie hrobů po návštěvě posíláme jen vám. Na webu je zveřejňujeme pouze s vaším výslovným souhlasem.
+			</p>
+
+			<h2>Vaše práva</h2>
+			<p>
+				Máte právo požadovat přístup ke svým údajům, jejich opravu nebo výmaz, omezení zpracování, přenesení údajů
+				a právo vznést námitku. Souhlas můžete kdykoli odvolat e-mailem na {contact.email}. Máte také právo podat
+				stížnost u Úřadu pro ochranu osobních údajů (uoou.gov.cz).
+			</p>
+
+			<p class="back"><a href="/">← Zpět na úvod</a></p>
+		</article>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.text {
+		max-width: 46rem;
+	}
+
+	h1 {
+		font-size: clamp(2.5rem, 6vw, 3.5rem);
+	}
+
+	h2 {
+		margin: 2.5rem 0 0.75rem;
+		font-size: 1.75rem;
+	}
+
+	.draft {
+		margin-top: 1.5rem;
+		padding: 1rem 1.25rem;
+		border-left: 3px solid var(--gold);
+		background: var(--cream-light);
+		font-size: 0.9rem;
+	}
+
+	.back {
+		margin-top: 3rem;
+	}
+</style>

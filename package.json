@@ -12,6 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/source-sans-3": "^5.3.1",
+    "@fontsource/cormorant-garamond": "^5.3.0",
     "astro": "^7.4.2"
   }
 }

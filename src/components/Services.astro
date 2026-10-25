@@ -1,0 +1,132 @@
+---
+import { services } from '../data/content';
+---
+
+<section class="section" id="sluzby">
+	<div class="wrap">
+		<p class="eyebrow">Nabídka služeb</p>
+		<h2>Vyberte péči o hrob, která vám vyhovuje</h2>
+		<p class="lead">
+			Úklid hrobu, pravidelná údržba, květiny i sezónní výzdoba. Každý balíček zahrnuje květiny nebo dekoraci a
+			fotografie hotové práce. Přesný rozsah a cenu vždy domluvíme předem.
+		</p>
+
+		<div class="cards">
+			{
+				services.map((service) => (
+					<article class="card">
+						<div class="ph photo">[{service.photo}]</div>
+						<div class="body">
+							<h3>{service.title}</h3>
+							<p class="text">{service.text}</p>
+							<ul>
+								{service.items.map((item) => <li>{item}</li>)}
+							</ul>
+							<div class="price">
+								<strong>{service.price}</strong>
+								{service.period && <span> {service.period}</span>}
+								<small>Orientační cena – upřesníme</small>
+							</div>
+							<a class="btn" href="#kontakt" data-service={service.id}>Nezávazně poptat</a>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.25rem;
+		margin-top: 3rem;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--line);
+		background: var(--cream-light);
+	}
+
+	.photo {
+		aspect-ratio: 16 / 9;
+	}
+
+	.body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		padding: 1.5rem;
+	}
+
+	h3 {
+		margin-bottom: 0.75rem;
+	}
+
+	.text {
+		font-size: 0.95rem;
+	}
+
+	ul {
+		margin: 1.25rem 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.9rem;
+	}
+
+	li {
+		padding: 0.3rem 0 0.3rem 1.2rem;
+		position: relative;
+	}
+
+	li::before {
+		content: '–';
+		position: absolute;
+		left: 0;
+		color: var(--gold);
+	}
+
+	.price {
+		margin-top: auto;
+		padding-top: 1rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.price strong {
+		font-family: var(--serif);
+		font-size: 1.9rem;
+		font-weight: 400;
+		color: var(--green);
+	}
+
+	.price span {
+		font-family: var(--serif);
+		font-size: 1.2rem;
+		color: var(--muted);
+	}
+
+	.price small {
+		display: block;
+		font-size: 0.75rem;
+		color: var(--muted);
+	}
+
+	.body .btn {
+		margin-top: 1.25rem;
+	}
+
+	@media (max-width: 1100px) {
+		.cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 620px) {
+		.cards {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

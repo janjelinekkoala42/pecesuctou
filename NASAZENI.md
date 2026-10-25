@@ -1,4 +1,4 @@
-# Nasazení webu Peče s úctou
+# Nasazení webu Péče s úctou
 
 Web běží na **Cloudflare Pages**, kód je na **GitHubu** a domény jsou **pecesuctou.cz** (hlavní) a **pecesuctou.com** (přesměrování).
 
