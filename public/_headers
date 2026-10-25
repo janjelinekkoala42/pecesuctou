@@ -1,0 +1,13 @@
+# Hlavičky pro Cloudflare Pages: https://developers.cloudflare.com/pages/configuration/headers/
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Náhledové adresy *.pages.dev se nikdy nemají indexovat
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

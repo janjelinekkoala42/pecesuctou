@@ -1,0 +1,68 @@
+---
+import { environmentName, isProduction } from '../env';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'Peče s úctou',
+	description = 'Peče s úctou – poctivé pečení s respektem k surovinám i lidem.',
+} = Astro.props;
+---
+
+<html lang="cs">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		{!isProduction && <meta name="robots" content="noindex, nofollow" />}
+		<title>{isProduction ? title : `[${environmentName}] ${title}`}</title>
+	</head>
+	<body>
+		{!isProduction && <div class="env-badge">Prostředí: {environmentName}</div>}
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--bg: #faf6f0;
+		--text: #3b2f25;
+		--accent: #b5653a;
+		--muted: #7a6a5c;
+		font-family: Georgia, 'Times New Roman', serif;
+		color: var(--text);
+		background: var(--bg);
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	a {
+		color: var(--accent);
+	}
+
+	.env-badge {
+		position: fixed;
+		right: 0.75rem;
+		bottom: 0.75rem;
+		z-index: 1000;
+		padding: 0.25rem 0.75rem;
+		border-radius: 999px;
+		background: #c0392b;
+		color: #fff;
+		font: bold 0.75rem system-ui, sans-serif;
+		text-transform: uppercase;
+	}
+</style>

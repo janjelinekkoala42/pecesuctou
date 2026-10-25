@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<header>
+		<p class="brand">Peče s úctou</p>
+	</header>
+
+	<main>
+		<section class="hero">
+			<h1>Poctivé pečení s úctou</h1>
+			<p>K surovinám, k řemeslu i k lidem, pro které pečeme.</p>
+		</section>
+	</main>
+
+	<footer>
+		<p>&copy; {new Date().getFullYear()} Peče s úctou</p>
+	</footer>
+</Layout>
+
+<style>
+	header,
+	main,
+	footer {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 1.5rem 1rem;
+	}
+
+	.brand {
+		margin: 0;
+		font-size: 1.25rem;
+		font-weight: bold;
+		color: var(--accent);
+	}
+
+	.hero {
+		padding: 6rem 0;
+		text-align: center;
+	}
+
+	.hero h1 {
+		margin: 0 0 1rem;
+		font-size: clamp(2rem, 6vw, 3.5rem);
+	}
+
+	.hero p {
+		margin: 0;
+		font-size: 1.25rem;
+		color: var(--muted);
+	}
+
+	footer {
+		color: var(--muted);
+		font-size: 0.875rem;
+		text-align: center;
+	}
+</style>
