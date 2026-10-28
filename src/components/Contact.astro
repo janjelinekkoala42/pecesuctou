@@ -1,9 +1,8 @@
 ---
 import { contact, services } from '../data/content';
 
-// Kam formulář posílá data. Dokud není služba pro odesílání vybraná, zůstává prázdné
-// a formulář místo odeslání ukáže kontakty.
-const endpoint = '';
+// Pages Function, která poptávku odešle e-mailem na info@pecesuctou.cz (viz functions/api/poptavka.ts).
+const endpoint = '/api/poptavka';
 ---
 
 <section class="section contact" id="kontakt">
@@ -63,6 +62,7 @@ const endpoint = '';
 					<a href="/zasady-ochrany-osobnich-udaju">Zásady zpracování osobních údajů</a>
 				</span>
 			</label>
+			<input class="trap" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
 			<p class="status" role="status" aria-live="polite"></p>
 			<button class="btn" type="submit">Nezávazně poptat péči</button>
 		</form>
@@ -220,6 +220,11 @@ const endpoint = '';
 	.consent a {
 		display: block;
 		color: var(--green);
+	}
+
+	.trap {
+		position: absolute;
+		left: -9999px;
 	}
 
 	.status:empty {
