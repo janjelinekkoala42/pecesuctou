@@ -97,21 +97,21 @@ export const team = [
 		role: 'Péče a úklid hrobů',
 		photo: sestraPhoto,
 		photoPosition: '50% 30%',
-		text: 'Na hřbitovy jezdí osobně. Stará se o úklid a úpravu hrobu a po každé návštěvě vám pošle fotografie, abyste viděli, že je o hrob postaráno.',
+		text: 'Na hřbitovy jezdí osobně. Stará se o úklid a úpravu hrobu a po každé návštěvě vám pošle fotografie.',
 	},
 	{
 		name: 'Denisa',
 		role: 'Objednávky a komunikace',
 		photo: dencaPhoto,
 		photoPosition: '50% 25%',
-		text: 'Je s vámi v kontaktu od první zprávy. Domluví rozsah péče, cenu i termín a ohlídá, aby vše proběhlo podle vašich přání. Pokud cokoli potřebujete, ozvěte se právě jí.',
+		text: 'Je s vámi v kontaktu od první zprávy. Domluví rozsah péče, cenu i termín a ohlídá, aby vše proběhlo podle vašich přání.',
 	},
 	{
 		name: 'Lucie',
 		role: 'Floristka · květiny a dekorace',
 		photo: floristkaPhoto,
 		photoPosition: '50% 4%',
-		text: 'Květiny, věnce a sezónní dekorace pro vás připravuje sama. Ráda vybere květiny podle vašich přání i ročního období, aby výzdoba hrobu působila důstojně a s citem.',
+		text: 'Květiny, věnce a sezónní dekorace pro vás připravuje floristka z naší rodiny. Ráda vybere květiny podle vašich přání i ročního období.',
 	},
 ];
 
