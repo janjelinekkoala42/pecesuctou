@@ -143,7 +143,7 @@ export const testimonials: { text: string; name?: string; meta: string }[] = [
 export const faq = [
 	{
 		q: 'Kde služby poskytujete?',
-		a: 'Pečujeme o hroby na pražských hřbitovech a v blízkém okolí Prahy. Pokud svůj hřbitov nevidíte v seznamu, napište nám – rádi ověříme, zda tam můžeme pečovat.',
+		a: 'Pečujeme o hroby na pražských hřbitovech a v blízkém okolí Prahy. Rádi se postaráme o váš hrob i mimo Prahu – stačí zadat poptávku a my se s vámi spojíme a vše individuálně domluvíme.',
 	},
 	{
 		q: 'Kolik stojí úklid hrobu?',
