@@ -1,5 +1,9 @@
 // Veškeré texty webu na jednom místě. Hodnoty v [hranatých závorkách] je potřeba doplnit.
 
+import sestraPhoto from '../assets/team/sestra.jpg';
+import dencaPhoto from '../assets/team/denca.jpg';
+import floristkaPhoto from '../assets/team/floristka.jpg';
+
 export const contact = {
 	phone: '777 623 221',
 	phoneHref: 'tel:+420777623221',
@@ -91,19 +95,22 @@ export const team = [
 	{
 		name: '[Jméno]',
 		role: 'Péče a úklid hrobů',
-		photo: 'Portrét – sestra',
+		photo: sestraPhoto,
+		photoPosition: '50% 30%',
 		text: 'Na hřbitovy jezdí osobně. Stará se o úklid a úpravu hrobu a po každé návštěvě vám pošle fotografie. [Doplnit pár vět o sobě.]',
 	},
 	{
 		name: '[Jméno]',
 		role: 'Objednávky a komunikace',
-		photo: 'Portrét – denča',
+		photo: dencaPhoto,
+		photoPosition: '50% 25%',
 		text: 'Je s vámi v kontaktu od první zprávy. Domluví rozsah péče, cenu i termín a ohlídá, aby vše proběhlo podle vašich přání. [Doplnit pár vět o sobě.]',
 	},
 	{
 		name: '[Jméno]',
 		role: 'Floristka · květiny a dekorace',
-		photo: 'Portrét – maminka floristka',
+		photo: floristkaPhoto,
+		photoPosition: '50% 4%',
 		text: 'Květiny, věnce a sezónní dekorace pro vás připravuje floristka z naší rodiny. Ráda vybere květiny podle vašich přání i ročního období. [Doplnit praxi a pár vět o sobě.]',
 	},
 ];
