@@ -4,7 +4,6 @@ import sestraPhoto from '../assets/team/sestra.jpg';
 import dencaPhoto from '../assets/team/denca.jpg';
 import floristkaPhoto from '../assets/team/floristka.jpg';
 import uklidPred from '../assets/work/uklid-pred.jpg';
-import uklidPo from '../assets/work/uklid-po.jpg';
 import jaroPred from '../assets/work/jaro-pred.jpg';
 import jaroPo from '../assets/work/jaro-po.jpg';
 import podzimPred from '../assets/work/podzim-pred.jpg';
@@ -116,7 +115,7 @@ export const team = [
 ];
 
 export const beforeAfter = [
-	{ before: uklidPred, after: uklidPo, caption: 'Jednorázová péče · úklid a očištění hrobu' },
+	{ before: uklidPred, after: vyzdobaKytice, caption: 'Jednorázová péče · úklid a květinová výzdoba' },
 	{ before: jaroPred, after: jaroPo, caption: 'Jarní péče · úklid a květinová výzdoba' },
 	{ before: podzimPred, after: podzimPo, caption: 'Celoroční péče · podzimní úklid a výzdoba' },
 	{ before: dusickyPred, after: dusickyPo, caption: 'Dušičky · úklid, věnec a zapálené svíčky' },
@@ -124,7 +123,6 @@ export const beforeAfter = [
 
 export const decorations = [
 	{ photo: vyzdobaAndel, alt: 'Zimní výzdoba hrobu s andělem, šiškami, oblázky a lucernou', caption: 'Zimní výzdoba' },
-	{ photo: vyzdobaKytice, alt: 'Květinová výzdoba hrobu s vřesem, růžemi a chryzantémami', caption: 'Květiny a dekorace' },
 ];
 
 // Reference od zákazníků (zveřejněné se souhlasem). Podle dodaných údajů: jen křestní jméno a služba.
