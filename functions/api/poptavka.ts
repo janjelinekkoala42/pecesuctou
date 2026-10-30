@@ -8,8 +8,8 @@ interface Env {
 
 const PACKAGES: Record<string, string> = {
 	jednorazova: 'Jednorázová péče',
-	'dvakrat-rocne': 'Péče 2× ročně',
-	celorocni: 'Celoroční péče 4× ročně',
+	'kazde-obdobi': 'Péče každé roční období 4× ročně',
+	celorocni: 'Celoroční péče 6× ročně',
 	kvetiny: 'Květiny a dekorace',
 	jine: 'Něco jiného / nevím',
 };

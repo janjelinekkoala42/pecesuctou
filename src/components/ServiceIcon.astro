@@ -36,14 +36,12 @@ const { name, size = 72 } = Astro.props;
 			<>
 				<rect x="7" y="10" width="34" height="31" rx="3" />
 				<path d="M7 18h34M16 6v8M32 6v8" />
-				<g class="dots">
-					<circle cx="14" cy="25" r="0.9" />
-					<circle cx="24" cy="25" r="0.9" />
-					<circle cx="34" cy="25" r="0.9" />
-					<circle cx="24" cy="34" r="0.9" />
-				</g>
-				<circle class="accent fill" cx="14" cy="34" r="3" />
-				<circle class="accent fill" cx="34" cy="34" r="3" />
+				<circle class="accent fill" cx="14" cy="25" r="2.6" />
+				<circle class="accent fill" cx="24" cy="25" r="2.6" />
+				<circle class="accent fill" cx="34" cy="25" r="2.6" />
+				<circle class="accent fill" cx="14" cy="34" r="2.6" />
+				<circle class="accent fill" cx="24" cy="34" r="2.6" />
+				<circle class="accent fill" cx="34" cy="34" r="2.6" />
 			</>
 		)
 	}
@@ -91,9 +89,4 @@ const { name, size = 72 } = Astro.props;
 		fill: var(--gold);
 	}
 
-	.dots circle {
-		fill: currentColor;
-		stroke: none;
-		opacity: 0.45;
-	}
 </style>
