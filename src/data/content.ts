@@ -73,16 +73,6 @@ export const steps = [
 	'Zašleme vám fotografie hotového hrobu.',
 ];
 
-export const cemeteries = [
-	'[Olšanské hřbitovy]',
-	'[Vinohradský hřbitov]',
-	'[Ďáblický hřbitov]',
-	'[Motolský hřbitov]',
-	'[Hřbitov Malvazinky]',
-	'[Vyšehradský hřbitov]',
-	'[Hřbitovy v okolí Prahy]',
-];
-
 export const reasons = [
 	'Osobní a citlivý přístup',
 	'Respekt k místu i vašim přáním',
@@ -143,7 +133,7 @@ export const testimonials: { text: string; name?: string; meta: string }[] = [
 export const faq = [
 	{
 		q: 'Kde služby poskytujete?',
-		a: 'Pečujeme o hroby na pražských hřbitovech a v blízkém okolí Prahy. Rádi se postaráme o váš hrob i mimo Prahu – stačí zadat poptávku a my se s vámi spojíme a vše individuálně domluvíme.',
+		a: 'Pečujeme o hroby na pražských hřbitovech a v blízkém okolí Prahy. Rádi se ale postaráme o hrob kdekoli v České republice – stačí zadat poptávku a my se s vámi spojíme a vše individuálně domluvíme.',
 	},
 	{
 		q: 'Kolik stojí úklid hrobu?',
