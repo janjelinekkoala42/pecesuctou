@@ -6,7 +6,10 @@ import { beforeAfter, testimonials } from '../data/content';
 	<div class="wrap">
 		<p class="eyebrow">Reference</p>
 		<h2>Péče, kterou můžete vidět</h2>
-		<p class="lead">Ukázky naší práce a slova zákazníků. Fotografie zveřejňujeme jen se souhlasem rodiny.</p>
+		<p class="lead">
+			Ukázky naší práce a situace, se kterými se na nás lidé obracejí. Fotografie zveřejňujeme jen se souhlasem
+			rodiny.
+		</p>
 
 		<div class="grid">
 			{
@@ -27,9 +30,10 @@ import { beforeAfter, testimonials } from '../data/content';
 				testimonials.map((t) => (
 					<blockquote>
 						<span class="mark">”</span>
-						<p>{t.text}</p>
+						<p>„{t.text}“</p>
 						<footer>
-							<strong>{t.name}</strong> · {t.meta}
+							{t.name && <><strong>{t.name}</strong> · </>}
+							{t.meta}
 						</footer>
 					</blockquote>
 				))

@@ -121,10 +121,21 @@ export const beforeAfter = [
 	'[Hřbitov – celoroční péče · doplnit]',
 ];
 
-export const testimonials = [
-	{ text: '[Text reference od zákazníka – doplnit po prvních zakázkách, se souhlasem]', name: '[Jméno, př. J. N.]', meta: '[město, služba]' },
-	{ text: '[Text reference od zákazníka – doplnit po prvních zakázkách, se souhlasem]', name: '[Jméno, př. J. N.]', meta: '[město, služba]' },
-	{ text: '[Text reference od zákazníka – doplnit po prvních zakázkách, se souhlasem]', name: '[Jméno, př. J. N.]', meta: '[město, služba]' },
+// Modelové situace – nejde o skutečné recenze. Až budou reference od zákazníků (se souhlasem),
+// vyměnit je a doplnit jméno, např. { text, name: 'J. N.', meta: 'Praha · Pravidelná péče' }.
+export const testimonials: { text: string; name?: string; meta: string }[] = [
+	{
+		text: 'Bydlím daleko od Prahy a nemohu se o rodinný hrob starat tak často, jak bych chtěla. Moc by mi pomohlo vědět, že je o něj postaráno a že dostanu fotografie po každé návštěvě.',
+		meta: 'Modelová situace · Pravidelná péče',
+	},
+	{
+		text: 'Na Dušičky chceme mít hrob krásně upravený, i když to letos sami nestíháme. Líbí se mi možnost domluvit květiny i výzdobu na jednom místě a nemuset nic složitě zařizovat.',
+		meta: 'Modelová situace · Sezónní výzdoba',
+	},
+	{
+		text: 'Péče o místo posledního odpočinku našich blízkých je pro nás důležitá. Hledáme někoho, kdo k němu bude přistupovat s úctou, pečlivostí a citem pro detail.',
+		meta: 'Modelová situace · Jednorázová péče',
+	},
 ];
 
 export const faq = [
