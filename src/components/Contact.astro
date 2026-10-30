@@ -1,5 +1,5 @@
 ---
-import { contact, services } from '../data/content';
+import { contact } from '../data/content';
 
 // Pages Function, která poptávku odešle e-mailem na info@pecesuctou.cz (viz functions/api/poptavka.ts).
 const endpoint = '/api/poptavka';
@@ -44,14 +44,6 @@ const endpoint = '/api/poptavka';
 				</label>
 			</div>
 			<label>
-				Vybraný balíček *
-				<select name="balicek" required>
-					<option value="">Vyberte službu…</option>
-					{services.map((s) => <option value={s.id}>{s.title}</option>)}
-					<option value="jine">Něco jiného / nevím</option>
-				</select>
-			</label>
-			<label>
 				<span>Zpráva nebo zvláštní přání <span class="opt">(nepovinné)</span></span>
 				<textarea name="zprava" rows="5"></textarea>
 			</label>
@@ -80,14 +72,6 @@ const endpoint = '/api/poptavka';
 <script>
 	const form = document.querySelector<HTMLFormElement>('#poptavka');
 	const status = form?.querySelector<HTMLElement>('.status');
-	const select = form?.querySelector<HTMLSelectElement>('select[name="balicek"]');
-
-	// Tlačítka „Nezávazně poptat“ u služeb rovnou předvyplní balíček.
-	document.querySelectorAll<HTMLAnchorElement>('a[data-service]').forEach((link) => {
-		link.addEventListener('click', () => {
-			if (select) select.value = link.dataset.service ?? '';
-		});
-	});
 
 	form?.addEventListener('submit', async (event) => {
 		event.preventDefault();
@@ -195,7 +179,6 @@ const endpoint = '/api/poptavka';
 	}
 
 	input,
-	select,
 	textarea {
 		width: 100%;
 		padding: 0.75rem 0.85rem;
@@ -207,7 +190,6 @@ const endpoint = '/api/poptavka';
 	}
 
 	input:focus,
-	select:focus,
 	textarea:focus {
 		outline: 2px solid var(--gold);
 		outline-offset: 1px;

@@ -17,7 +17,6 @@ export interface Inquiry {
 	email: string;
 	telefon: string;
 	hrbitov: string;
-	balicek: string;
 	zprava: string;
 	prostredi: string;
 }
@@ -37,7 +36,7 @@ export default {
 				to: TO,
 				from: FROM,
 				replyTo: data.email,
-				subject: `${prefix}Nová poptávka: ${data.balicek} – ${data.jmeno}`,
+				subject: `${prefix}Nová poptávka – ${data.jmeno}`,
 				text: [
 					'Nová poptávka z webu pecesuctou.cz',
 					'',
@@ -45,7 +44,6 @@ export default {
 					`E-mail:   ${data.email}`,
 					`Telefon:  ${data.telefon}`,
 					`Hřbitov:  ${data.hrbitov}`,
-					`Balíček:  ${data.balicek}`,
 					'',
 					'Zpráva:',
 					data.zprava || '(bez zprávy)',
