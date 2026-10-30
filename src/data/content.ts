@@ -126,14 +126,17 @@ export const beforeAfter = [
 export const testimonials: { text: string; name?: string; meta: string }[] = [
 	{
 		text: 'Bydlím daleko od Prahy a nemohu se o rodinný hrob starat tak často, jak bych chtěla. Moc by mi pomohlo vědět, že je o něj postaráno a že dostanu fotografie po každé návštěvě.',
+		name: 'Jana, 62 let',
 		meta: 'Modelová situace · Pravidelná péče',
 	},
 	{
 		text: 'Na Dušičky chceme mít hrob krásně upravený, i když to letos sami nestíháme. Líbí se mi možnost domluvit květiny i výzdobu na jednom místě a nemuset nic složitě zařizovat.',
+		name: 'Petr, 45 let',
 		meta: 'Modelová situace · Sezónní výzdoba',
 	},
 	{
 		text: 'Péče o místo posledního odpočinku našich blízkých je pro nás důležitá. Hledáme někoho, kdo k němu bude přistupovat s úctou, pečlivostí a citem pro detail.',
+		name: 'Marie, 71 let',
 		meta: 'Modelová situace · Jednorázová péče',
 	},
 ];
