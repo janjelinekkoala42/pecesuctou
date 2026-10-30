@@ -1,0 +1,84 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { legalEffectiveFrom } from '../data/content';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={`${title} – Péče s úctou`} description={description}>
+	<Header />
+	<main class="section">
+		<article class="wrap legal">
+			<p class="eyebrow">Péče s úctou</p>
+			<h1>{title}</h1>
+			<p class="effective">Účinné od {legalEffectiveFrom}</p>
+			<slot />
+			<p class="back"><a href="/">← Zpět na úvod</a></p>
+		</article>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.legal {
+		max-width: 46rem;
+	}
+
+	h1 {
+		font-size: clamp(2.5rem, 6vw, 3.5rem);
+	}
+
+	.effective {
+		margin-top: 0.75rem;
+		color: var(--muted);
+	}
+
+	.legal :global(h2) {
+		margin: 2.75rem 0 0.75rem;
+		font-size: 1.75rem;
+	}
+
+	.legal :global(h3) {
+		margin: 1.25rem 0 0.25rem;
+		font-family: var(--sans);
+		font-size: 1rem;
+		font-weight: 700;
+		color: var(--text);
+	}
+
+	.legal :global(p + p) {
+		margin-top: 0.75rem;
+	}
+
+	.legal :global(ul) {
+		margin: 0.75rem 0;
+		padding-left: 1.25rem;
+	}
+
+	.legal :global(li) {
+		margin-bottom: 0.3rem;
+	}
+
+	.legal :global(address) {
+		margin: 0.75rem 0;
+		padding: 1rem 1.25rem;
+		border-left: 3px solid var(--gold);
+		background: var(--cream-light);
+		font-style: normal;
+	}
+
+	.legal :global(a) {
+		color: var(--green);
+	}
+
+	.back {
+		margin-top: 3rem;
+	}
+</style>

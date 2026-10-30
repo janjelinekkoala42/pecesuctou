@@ -1,0 +1,310 @@
+---
+import { contact, services } from '../data/content';
+
+// Pages Function, která poptávku odešle e-mailem na info@pecesuctou.cz (viz functions/api/poptavka.ts).
+const endpoint = '/api/poptavka';
+---
+
+<section class="section contact" id="kontakt">
+	<div class="wrap grid">
+		<div>
+			<p class="eyebrow">Kontakt</p>
+			<h2>Svěřte péči o hrob nám</h2>
+			<p class="lead">
+				Napište nám, o jakou péči máte zájem. Ozveme se vám, společně probereme vaše přání a domluvíme další
+				postup.
+			</p>
+			<dl>
+				<div><dt>Telefon:</dt><dd><a href={contact.phoneHref}>{contact.phone}</a></dd></div>
+				<div><dt>E-mail:</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
+				<div><dt>Kde působíme:</dt><dd>{contact.area}</dd></div>
+			</dl>
+			<p class="note">Odeslání formuláře je nezávazné. Nejde o objednávku ani platbu.</p>
+		</div>
+
+		<form id="poptavka" method="post" action={endpoint || undefined} data-endpoint={endpoint} novalidate>
+			<div class="row">
+				<label>
+					Jméno a příjmení *
+					<input name="jmeno" autocomplete="name" required />
+				</label>
+				<label>
+					E-mail *
+					<input name="email" type="email" autocomplete="email" required />
+				</label>
+			</div>
+			<div class="row">
+				<label>
+					Telefon *
+					<input name="telefon" type="tel" autocomplete="tel" required />
+				</label>
+				<label>
+					Město a název hřbitova *
+					<input name="hrbitov" placeholder="např. Praha, Olšanské hřbitovy" required />
+				</label>
+			</div>
+			<label>
+				Vybraný balíček *
+				<select name="balicek" required>
+					<option value="">Vyberte službu…</option>
+					{services.map((s) => <option value={s.id}>{s.title}</option>)}
+					<option value="jine">Něco jiného / nevím</option>
+				</select>
+			</label>
+			<label>
+				<span>Zpráva nebo zvláštní přání <span class="opt">(nepovinné)</span></span>
+				<textarea name="zprava" rows="5"></textarea>
+			</label>
+			<label class="consent">
+				<input type="checkbox" name="souhlas" required />
+				<span>
+					Seznámil(a) jsem se s <a href="/obchodni-podminky">obchodními podmínkami</a> a <a href="/zasady-ochrany-osobnich-udaju">zásadami zpracování osobních údajů</a>.
+				</span>
+			</label>
+			<input class="trap" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
+			<p class="status" role="status" aria-live="polite"></p>
+			<button class="btn" type="submit">Nezávazně poptat péči</button>
+		</form>
+
+		<div class="thanks" id="podekovani" tabindex="-1" hidden>
+			<svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+				<circle cx="12" cy="12" r="10" />
+				<path d="m7.5 12.5 3 3 6-6.5" />
+			</svg>
+			<h3>Děkujeme za odeslání zprávy</h3>
+			<p>Budeme vás obratem kontaktovat a společně probereme, jak se o hrob postaráme.</p>
+		</div>
+	</div>
+</section>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('#poptavka');
+	const status = form?.querySelector<HTMLElement>('.status');
+	const select = form?.querySelector<HTMLSelectElement>('select[name="balicek"]');
+
+	// Tlačítka „Nezávazně poptat“ u služeb rovnou předvyplní balíček.
+	document.querySelectorAll<HTMLAnchorElement>('a[data-service]').forEach((link) => {
+		link.addEventListener('click', () => {
+			if (select) select.value = link.dataset.service ?? '';
+		});
+	});
+
+	form?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		if (!status) return;
+
+		if (!form.checkValidity()) {
+			form.classList.add('validated');
+			status.textContent = 'Vyplňte prosím všechna povinná pole a potvrďte, že jste se seznámili s podmínkami.';
+			status.dataset.state = 'error';
+			return;
+		}
+
+		const endpoint = form.dataset.endpoint;
+		if (!endpoint) {
+			status.textContent = 'Formulář zatím není aktivní. Zavolejte nám prosím nebo napište e-mail.';
+			status.dataset.state = 'error';
+			return;
+		}
+
+		const button = form.querySelector('button');
+		const label = button?.textContent;
+		button?.setAttribute('disabled', '');
+		if (button) button.textContent = 'Odesíláme…';
+		status.textContent = '';
+		try {
+			const response = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+			if (!response.ok) throw new Error(String(response.status));
+			const thanks = document.querySelector<HTMLElement>('#podekovani');
+			form.reset();
+			form.hidden = true;
+			if (thanks) {
+				thanks.hidden = false;
+				thanks.focus();
+				thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}
+		} catch {
+			status.textContent = 'Odeslání se nepovedlo. Zkuste to prosím znovu nebo nám zavolejte.';
+			status.dataset.state = 'error';
+		} finally {
+			button?.removeAttribute('disabled');
+			if (button && label) button.textContent = label;
+		}
+	});
+</script>
+
+<style>
+	.contact {
+		background: var(--cream-light);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 0.8fr 1.2fr;
+		gap: 4rem;
+		align-items: start;
+	}
+
+	dl {
+		margin: 2rem 0 1.5rem;
+	}
+
+	dl div {
+		display: flex;
+		gap: 0.35rem;
+		margin-bottom: 0.4rem;
+	}
+
+	dt {
+		font-weight: 700;
+	}
+
+	dd {
+		margin: 0;
+	}
+
+	.note {
+		font-size: 0.85rem;
+		color: var(--muted);
+	}
+
+	form {
+		display: grid;
+		gap: 1.1rem;
+		padding: 2rem;
+		border: 1px solid var(--line);
+		background: var(--cream);
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.1rem;
+	}
+
+	label {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+	}
+
+	.opt {
+		font-weight: 400;
+		color: var(--muted);
+	}
+
+	input,
+	select,
+	textarea {
+		width: 100%;
+		padding: 0.75rem 0.85rem;
+		border: 1px solid #cfc6b6;
+		border-radius: 0;
+		background: #fff;
+		color: var(--text);
+		font: 400 1rem var(--sans);
+	}
+
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: 2px solid var(--gold);
+		outline-offset: 1px;
+	}
+
+	.validated :invalid {
+		border-color: #b3261e;
+	}
+
+	.consent {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		font-weight: 400;
+	}
+
+	.consent input {
+		width: 1.15rem;
+		height: 1.15rem;
+		flex: none;
+		margin-top: 0.15rem;
+		padding: 0;
+		accent-color: var(--green);
+	}
+
+	.consent a,
+	dd a {
+		color: var(--green);
+	}
+
+	.trap {
+		position: absolute;
+		left: -9999px;
+	}
+
+	.status:empty {
+		display: none;
+	}
+
+	.status[data-state='error'] {
+		color: #b3261e;
+	}
+
+	.status[data-state='ok'] {
+		color: var(--green);
+		font-weight: 600;
+	}
+
+	.thanks {
+		display: grid;
+		justify-items: center;
+		gap: 1rem;
+		padding: 3.5rem 2rem;
+		border: 1px solid var(--line);
+		background: var(--cream);
+		text-align: center;
+		color: var(--green);
+	}
+
+	.thanks[hidden] {
+		display: none;
+	}
+
+	.thanks:focus {
+		outline: none;
+	}
+
+	.thanks h3 {
+		font-size: 2rem;
+	}
+
+	.thanks p {
+		max-width: 26rem;
+		color: var(--text);
+	}
+
+	form[hidden] {
+		display: none;
+	}
+
+	button[disabled] {
+		opacity: 0.6;
+		cursor: wait;
+	}
+
+	@media (max-width: 860px) {
+		.grid {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+
+		.row {
+			grid-template-columns: 1fr;
+		}
+
+		form {
+			padding: 1.25rem;
+		}
+	}
+</style>

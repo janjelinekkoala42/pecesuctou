@@ -1,0 +1,90 @@
+---
+import Logo from './Logo.astro';
+import { contact, operator } from '../data/content';
+---
+
+<footer class="footer">
+	<div class="wrap grid">
+		<div>
+			<Logo light />
+			<p class="motto">Vy vzpomínáte. My se postaráme.</p>
+		</div>
+		<div class="contacts">
+			<p class="heading">Kontakt</p>
+			<p><a href={contact.phoneHref}>{contact.phone}</a></p>
+			<p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+			<p>{contact.area}</p>
+		</div>
+		<nav class="legal" aria-label="Vše o nákupu">
+			<p class="heading">Vše o nákupu</p>
+			<a href="/obchodni-podminky">Obchodní podmínky</a>
+			<a href="/zasady-ochrany-osobnich-udaju">Ochrana osobních údajů</a>
+		</nav>
+		<div class="operator">
+			<p class="heading">Provozovatel</p>
+			<p>{operator.name}<br />IČO: {operator.ico}<br />{operator.address}</p>
+		</div>
+	</div>
+	<div class="wrap bottom">
+		<p>© {new Date().getFullYear()} Péče s úctou · pecesuctou.cz</p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		padding: 3.5rem 0 2rem;
+		background: var(--green);
+		color: #c9d3c8;
+		font-size: 0.9rem;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 1.3fr 1fr 1fr 1fr;
+		gap: 2rem;
+	}
+
+	.motto {
+		margin-top: 0.75rem;
+		font-family: var(--serif);
+		font-size: 1.3rem;
+		font-style: italic;
+	}
+
+	.contacts p {
+		margin-bottom: 0.4rem;
+	}
+
+	.contacts a {
+		text-decoration: none;
+	}
+
+	.heading {
+		margin-bottom: 0.75rem;
+		color: #d9b56f;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	.legal a {
+		display: block;
+		margin-bottom: 0.6rem;
+		color: #fff;
+	}
+
+	.bottom {
+		margin-top: 2.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgb(255 255 255 / 0.12);
+		font-size: 0.8rem;
+		color: #9fb0a5;
+	}
+
+	@media (max-width: 860px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

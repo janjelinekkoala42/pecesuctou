@@ -1,0 +1,48 @@
+<section class="section">
+	<div class="wrap grid">
+		<div>
+			<p class="eyebrow">Kde pečujeme</p>
+			<h2>Péče o hroby v Praze a okolí</h2>
+			<p class="lead">Staráme se o hroby na pražských hřbitovech a v blízkém okolí Prahy.</p>
+		</div>
+		<div class="callout">
+			<p>Napište nám, rádi se domluvíme na péči o hrob v rámci celé České republiky.</p>
+			<a class="btn btn-outline" href="#kontakt">Napsat nám</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.callout {
+		padding: 2.5rem;
+		border: 1px solid var(--line);
+		border-left: 3px solid var(--gold);
+		background: var(--cream-light);
+	}
+
+	.callout p {
+		margin-bottom: 1.5rem;
+		font-family: var(--serif);
+		font-size: clamp(1.6rem, 3vw, 2.1rem);
+		line-height: 1.25;
+		color: var(--green);
+	}
+
+	@media (max-width: 860px) {
+		.grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.callout {
+			padding: 1.75rem;
+		}
+	}
+</style>

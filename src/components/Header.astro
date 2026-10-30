@@ -1,0 +1,99 @@
+---
+import Logo from './Logo.astro';
+import { announcement } from '../data/content';
+
+const links = [
+	{ href: '/#sluzby', label: 'Služby' },
+	{ href: '/#jak-to-funguje', label: 'Jak to funguje' },
+	{ href: '/#o-nas', label: 'O nás' },
+	{ href: '/#reference', label: 'Reference' },
+	{ href: '/#caste-otazky', label: 'Časté otázky' },
+	{ href: '/#kontakt', label: 'Kontakt' },
+];
+---
+
+<div class="announcement">
+	<div class="wrap">
+		{announcement.text}
+		<a href="/#kontakt" data-service="kvetiny">{announcement.link}</a>
+	</div>
+</div>
+
+<header class="header">
+	<div class="wrap inner">
+		<Logo />
+		<nav aria-label="Hlavní navigace">
+			{links.map((link) => <a href={link.href}>{link.label}</a>)}
+			<a class="btn" href="/#kontakt">Nezávazná poptávka</a>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.announcement {
+		padding: 0.7rem 0;
+		background: var(--green);
+		color: #fff;
+		font-size: 0.9rem;
+		text-align: center;
+	}
+
+	.announcement a {
+		margin-left: 0.75rem;
+		color: #d9b56f;
+		font-weight: 600;
+	}
+
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		border-bottom: 1px solid var(--line);
+		background: var(--cream);
+	}
+
+	.inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem 2rem;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+	}
+
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem 1.75rem;
+		font-size: 0.95rem;
+	}
+
+	nav a:not(.btn) {
+		text-decoration: none;
+	}
+
+	nav a:not(.btn):hover {
+		color: var(--gold);
+	}
+
+	nav .btn {
+		padding: 0.7rem 1.25rem;
+	}
+
+	@media (max-width: 700px) {
+		.announcement a {
+			display: block;
+			margin: 0.35rem 0 0;
+		}
+
+		.header {
+			position: static;
+		}
+
+		nav {
+			gap: 0.6rem 1.25rem;
+		}
+	}
+</style>

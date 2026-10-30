@@ -1,0 +1,15 @@
+// Worker, který odesílá poptávky z webu do schránky info@pecesuctou.cz (pecesuctou@gmail.com).
+// Není dostupný z internetu, volá ho jen funkce webu přes service binding MAILER.
+{
+	"name": "pecesuctou-mailer",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-01",
+	"workers_dev": false,
+	"preview_urls": false,
+	"send_email": [
+		{
+			"name": "EMAIL",
+			"allowed_destination_addresses": ["pecesuctou@gmail.com"]
+		}
+	]
+}

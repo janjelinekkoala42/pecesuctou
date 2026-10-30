@@ -1,4 +1,4 @@
-# Nasazení webu Peče s úctou
+# Nasazení webu Péče s úctou
 
 Web běží na **Cloudflare Pages**, kód je na **GitHubu** a domény jsou **pecesuctou.cz** (hlavní) a **pecesuctou.com** (přesměrování).
 
@@ -8,7 +8,7 @@ Web běží na **Cloudflare Pages**, kód je na **GitHubu** a domény jsou **pec
 |---|---|---|---|
 | **Produkce** | `main` | https://pecesuctou.cz | všichni, indexují ho vyhledávače |
 | **Dev** | `dev` | https://dev.pecesuctou.cz | jen pozvaní (Cloudflare Access), neindexuje se |
-| **Náhledy** | jakákoli jiná větev | `https://<větev>.pece-s-uctou.pages.dev` | jen pozvaní, neindexuje se |
+| **Náhledy** | jakákoli jiná větev | `https://<větev>.pecesuctou.pages.dev` | jen pozvaní, neindexuje se |
 | **Lokál** | — | http://localhost:4321 | jen ty |
 
 Postup práce:
@@ -28,7 +28,7 @@ Web pozná prostředí sám podle proměnné `CF_PAGES_BRANCH` (viz `src/env.ts`
 ## Krok 1: GitHub
 
 1. Dokonči přihlášení v terminálu: `gh auth login` (GitHub.com → HTTPS → přihlásit přes prohlížeč).
-2. Pak řekni Claudovi, ať založí repo `pece-s-uctou` a pushne větve `main` a `dev`.
+2. Pak řekni Claudovi, ať založí repo `pecesuctou` a pushne větve `main` a `dev`.
 3. Na GitHubu v repu: **Settings → Branches → Add branch ruleset** pro `main`:
    - zapnout *Restrict deletions* a *Block force pushes*,
    - *Require a pull request before merging*, aby se do produkce nedalo pushnout omylem.
@@ -36,15 +36,15 @@ Web pozná prostředí sám podle proměnné `CF_PAGES_BRANCH` (viz `src/env.ts`
 ## Krok 2: Cloudflare účet a Pages projekt
 
 1. Založ účet na https://dash.cloudflare.com/sign-up (bezplatný plán stačí). Zapni si dvoufázové ověření.
-2. **Workers & Pages → Create → Pages → Connect to Git** → povol přístup ke GitHub repu `pece-s-uctou`.
+2. **Workers & Pages → Create → Pages → Connect to Git** → povol přístup ke GitHub repu `pecesuctou`.
 3. Nastavení buildu:
-   - **Project name:** `pece-s-uctou`
+   - **Project name:** `pecesuctou`
    - **Production branch:** `main`
    - **Framework preset:** Astro
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
    - Verze Node se načte ze souboru `.node-version` (22).
-4. Po prvním buildu poběží web na `https://pece-s-uctou.pages.dev` (produkce) a `https://dev.pece-s-uctou.pages.dev` (dev).
+4. Po prvním buildu poběží web na `https://pecesuctou.pages.dev` (produkce) a `https://dev.pecesuctou.pages.dev` (dev).
 5. **Settings → Builds → Branch control:** *Preview branch* = *All non-Production branches*. Pokud nechceš náhledy pro každou větev, zvol *Custom branches* a zadej jen `dev`.
 
 > Pozn.: Cloudflare pro úplně nové projekty propaguje i „Workers se statickými soubory“. Pages ale dál plně funguje a pro tenhle web je jednodušší.
@@ -69,14 +69,14 @@ Totéž zopakuj pro `pecesuctou.com`.
 
 ## Krok 5: Napojení domén na prostředí
 
-V Pages projektu **pece-s-uctou → Custom domains**:
+V Pages projektu **pecesuctou → Custom domains**:
 
 1. **Set up a domain** → `pecesuctou.cz`, tím vznikne produkce.
 2. **Set up a domain** → `www.pecesuctou.cz`.
 3. **dev.pecesuctou.cz** se v Custom domains přidat nedá přímo na větev, proto:
    - Custom domains → **Set up a domain** → `dev.pecesuctou.cz` → potvrdit,
    - pak v **DNS** domény pecesuctou.cz uprav záznam `dev` na:
-     `CNAME dev → dev.pece-s-uctou.pages.dev` (Proxied, oranžový mráček).
+     `CNAME dev → dev.pecesuctou.pages.dev` (Proxied, oranžový mráček).
 
 Přesměrování (doména → **Rules → Redirect Rules**):
 
@@ -88,7 +88,7 @@ Přesměrování (doména → **Rules → Redirect Rules**):
 
 Dev ani náhledy nemají být veřejné.
 
-1. Pages projekt → **Settings → General → Access policy → Enable**. Tím se zamknou všechny `*.pece-s-uctou.pages.dev` náhledy.
+1. Pages projekt → **Settings → General → Access policy → Enable**. Tím se zamknou všechny `*.pecesuctou.pages.dev` náhledy.
 2. **Zero Trust** (v levém menu; při prvním otevření zvol bezplatný plán do 50 uživatelů, chce to platební kartu, ale nic se nestrhne).
 3. **Access → Applications → Add → Self-hosted**:
    - Application domain: `dev.pecesuctou.cz`,

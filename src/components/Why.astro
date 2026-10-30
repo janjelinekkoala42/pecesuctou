@@ -1,0 +1,85 @@
+---
+import { reasons } from '../data/content';
+---
+
+<section class="section why">
+	<div class="wrap grid">
+		<div>
+			<p class="eyebrow">Proč Péče s úctou</p>
+			<h2>Staráme se, jako by šlo o naše blízké</h2>
+			<p class="lead">
+				Jsme malá rodinná služba z Prahy. Každý hrob navštěvujeme osobně a s respektem k místu i ke vzpomínkám.
+			</p>
+		</div>
+		<ol>
+			{
+				reasons.map((reason, i) => (
+					<li>
+						<span>{String(i + 1).padStart(2, '0')}</span>
+						{reason}
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.why {
+		background: var(--green);
+		color: #e6ebe7;
+	}
+
+	.why h2 {
+		color: #fff;
+	}
+
+	.why .eyebrow {
+		color: #d9b56f;
+	}
+
+	.why .lead {
+		color: #c9d3c8;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 0.9fr 1.1fr;
+		gap: 4rem;
+		align-items: center;
+	}
+
+	ol {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		display: flex;
+		gap: 1.25rem;
+		align-items: baseline;
+		padding: 1.1rem 0;
+		border-bottom: 1px solid rgb(255 255 255 / 0.12);
+		color: #fff;
+		font-family: var(--serif);
+		font-size: 1.5rem;
+		line-height: 1.25;
+	}
+
+	li:last-child {
+		border-bottom: 0;
+	}
+
+	li span {
+		color: #d9b56f;
+		font-size: 1rem;
+	}
+
+	@media (max-width: 860px) {
+		.grid {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+	}
+</style>
