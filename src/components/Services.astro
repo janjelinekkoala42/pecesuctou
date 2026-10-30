@@ -28,7 +28,6 @@ import { services } from '../data/content';
 							<div class="price">
 								<strong>{service.price}</strong>
 								{service.period && <span> {service.period}</span>}
-								<small>Orientační cena – upřesníme</small>
 							</div>
 							<a class="btn" href="#kontakt" data-service={service.id}>Nezávazně poptat</a>
 						</div>
@@ -113,12 +112,6 @@ import { services } from '../data/content';
 	.price span {
 		font-family: var(--serif);
 		font-size: 1.2rem;
-		color: var(--muted);
-	}
-
-	.price small {
-		display: block;
-		font-size: 0.75rem;
 		color: var(--muted);
 	}
 

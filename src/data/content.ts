@@ -68,7 +68,7 @@ export const services = [
 export const steps = [
 	'Vyberete si službu, o kterou máte zájem.',
 	'Vyplníte krátký nezávazný formulář.',
-	'Ozveme se vám a upřesníme hřbitov, rozsah péče, květiny, cenu a termín.',
+	'Ozveme se vám a upřesníme hřbitov, rozsah péče, květiny a termín.',
 	'Provedeme domluvenou péči.',
 	'Zašleme vám fotografie hotového hrobu.',
 ];
@@ -147,7 +147,7 @@ export const faq = [
 	},
 	{
 		q: 'Kolik stojí úklid hrobu?',
-		a: 'Jednorázová péče stojí 990 Kč, péče v každém ročním období (4× ročně) 3 500 Kč za rok a celoroční péče 6× ročně 5 500 Kč za rok. Květiny a dekorace pořídíte od 350 Kč. Konečná cena závisí na velikosti a stavu hrobu, vzdálenosti hřbitova a zvolených květinách. Přesnou cenu vždy domluvíme předem.',
+		a: 'Jednorázová péče stojí 990 Kč, péče v každém ročním období (4× ročně) 3 500 Kč za rok a celoroční péče 6× ročně 5 500 Kč za rok. Květiny a dekorace pořídíte od 350 Kč.',
 	},
 	{
 		q: 'Postaráte se o hrob, když bydlím daleko nebo v zahraničí?',
@@ -159,7 +159,7 @@ export const faq = [
 	},
 	{
 		q: 'Jak probíhá objednání?',
-		a: 'Vyplníte krátký nezávazný formulář nebo nám zavoláte. Ozveme se vám, upřesníme hřbitov, rozsah péče, květiny, cenu a termín. Až vše odsouhlasíte, péči provedeme.',
+		a: 'Vyplníte krátký nezávazný formulář nebo nám zavoláte. Ozveme se vám, upřesníme hřbitov, rozsah péče, květiny a termín. Až vše odsouhlasíte, péči provedeme.',
 	},
 	{
 		q: 'Mohu si zvolit konkrétní květiny nebo dekoraci?',
@@ -174,8 +174,8 @@ export const faq = [
 		a: 'Ano. Jednorázová péče je vhodná třeba před Dušičkami, Vánoci nebo k výročí. Pravidelnou péči si můžete objednat kdykoli později.',
 	},
 	{
-		q: 'Jak se dozvím konečnou cenu?',
-		a: 'Ceny na webu jsou orientační. Po odeslání poptávky vám pošleme přesnou cenu podle konkrétního hrobu a vašich přání. Bez vašeho souhlasu nic neprovedeme.',
+		q: 'Může se cena ještě změnit?',
+		a: 'Cena každého balíčku je uvedena u služby. Pokud byste chtěli něco navíc – například náročnější údržbu nebo speciální květiny – sdělíme vám cenu předem a bez vašeho souhlasu nic neprovedeme.',
 	},
 	{
 		q: 'Co když je hrob ve špatném stavu nebo vyžaduje náročnější údržbu?',
