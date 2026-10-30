@@ -1,4 +1,5 @@
 ---
+import ServiceIcon from './ServiceIcon.astro';
 import { services } from '../data/content';
 ---
 
@@ -7,7 +8,7 @@ import { services } from '../data/content';
 		<p class="eyebrow">Nabídka služeb</p>
 		<h2>Vyberte péči o hrob, která vám vyhovuje</h2>
 		<p class="lead">
-			Úklid hrobu, pravidelná údržba, květiny i sezónní výzdoba. Každý balíček zahrnuje květiny nebo dekoraci a
+			Úklid hrobu, pravidelná údržba, květiny i sezónní výzdoba. Každý balíček zahrnuje zapálení svíčky, květiny nebo dekoraci a
 			fotografie hotové práce. Přesný rozsah a cenu vždy domluvíme předem.
 		</p>
 
@@ -15,7 +16,9 @@ import { services } from '../data/content';
 			{
 				services.map((service) => (
 					<article class="card">
-						<div class="ph photo">[{service.photo}]</div>
+						<div class="icon-panel">
+							<ServiceIcon name={service.icon} />
+						</div>
 						<div class="body">
 							<h3>{service.title}</h3>
 							<p class="text">{service.text}</p>
@@ -51,8 +54,13 @@ import { services } from '../data/content';
 		background: var(--cream-light);
 	}
 
-	.photo {
-		aspect-ratio: 16 / 9;
+	.icon-panel {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 9.5rem;
+		border-bottom: 1px solid var(--line);
+		background: var(--cream);
 	}
 
 	.body {
