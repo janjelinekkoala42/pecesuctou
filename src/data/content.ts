@@ -5,8 +5,8 @@ import dencaPhoto from '../assets/team/denca.jpg';
 import floristkaPhoto from '../assets/team/floristka.jpg';
 
 export const contact = {
-	phone: '777 623 221',
-	phoneHref: 'tel:+420777623221',
+	phone: '777 623 231',
+	phoneHref: 'tel:+420777623231',
 	email: 'info@pecesuctou.cz',
 	area: 'Praha a okolí',
 };
