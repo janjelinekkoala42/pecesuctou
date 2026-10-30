@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { contact } from '../data/content';
+import { contact, operator } from '../data/content';
 ---
 
 <footer class="footer">
@@ -10,13 +10,14 @@ import { contact } from '../data/content';
 			<p class="motto">Vy vzpomínáte. My se postaráme.</p>
 		</div>
 		<div class="contacts">
-			<p>{contact.phone}</p>
-			<p>{contact.email}</p>
+			<p><a href={contact.phoneHref}>{contact.phone}</a></p>
+			<p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
 			<p>{contact.area}</p>
 		</div>
 		<div class="legal">
+			<a href="/obchodni-podminky">Obchodní podmínky</a>
 			<a href="/zasady-ochrany-osobnich-udaju">Zásady zpracování osobních údajů</a>
-			<p>{contact.operator}</p>
+			<p>Provozovatel: {operator.name}<br />IČO: {operator.ico}<br />{operator.address}</p>
 		</div>
 	</div>
 	<div class="wrap bottom">
@@ -48,6 +49,14 @@ import { contact } from '../data/content';
 
 	.contacts p {
 		margin-bottom: 0.4rem;
+	}
+
+	.contacts a {
+		text-decoration: none;
+	}
+
+	.legal p {
+		margin-top: 1rem;
 	}
 
 	.legal a {

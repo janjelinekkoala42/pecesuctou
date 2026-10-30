@@ -1,11 +1,21 @@
 // Veškeré texty webu na jednom místě. Hodnoty v [hranatých závorkách] je potřeba doplnit.
 
 export const contact = {
-	phone: '[DOPLNIT TELEFON]',
+	phone: '777 623 221',
+	phoneHref: 'tel:+420777623221',
 	email: 'info@pecesuctou.cz',
 	area: 'Praha a okolí',
-	operator: '[Provozovatel, IČO, sídlo – doplnit]',
 };
+
+// Provozovatel podle obchodních podmínek a zásad zpracování osobních údajů.
+export const operator = {
+	name: 'Denisa Skládalová',
+	ico: '21999651',
+	address: 'Podolská 423/20, 147 00 Praha – Podolí',
+};
+
+// Datum účinnosti obchodních podmínek a zásad zpracování osobních údajů.
+export const legalEffectiveFrom = '1. 11. 2026';
 
 export const announcement = {
 	text: 'Blíží se Dušičky. Objednejte úklid a výzdobu hrobu včas.',

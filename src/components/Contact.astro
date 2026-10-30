@@ -15,8 +15,8 @@ const endpoint = '/api/poptavka';
 				postup.
 			</p>
 			<dl>
-				<div><dt>Telefon:</dt><dd>{contact.phone}</dd></div>
-				<div><dt>E-mail:</dt><dd>{contact.email}</dd></div>
+				<div><dt>Telefon:</dt><dd><a href={contact.phoneHref}>{contact.phone}</a></dd></div>
+				<div><dt>E-mail:</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
 				<div><dt>Kde působíme:</dt><dd>{contact.area}</dd></div>
 			</dl>
 			<p class="note">Odeslání formuláře je nezávazné. Nejde o objednávku ani platbu.</p>
@@ -58,8 +58,7 @@ const endpoint = '/api/poptavka';
 			<label class="consent">
 				<input type="checkbox" name="souhlas" required />
 				<span>
-					Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.
-					<a href="/zasady-ochrany-osobnich-udaju">Zásady zpracování osobních údajů</a>
+					Seznámil(a) jsem se s <a href="/obchodni-podminky">obchodními podmínkami</a> a <a href="/zasady-ochrany-osobnich-udaju">zásadami zpracování osobních údajů</a>.
 				</span>
 			</label>
 			<input class="trap" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -96,7 +95,7 @@ const endpoint = '/api/poptavka';
 
 		if (!form.checkValidity()) {
 			form.classList.add('validated');
-			status.textContent = 'Vyplňte prosím všechna povinná pole a potvrďte souhlas.';
+			status.textContent = 'Vyplňte prosím všechna povinná pole a potvrďte, že jste se seznámili s podmínkami.';
 			status.dataset.state = 'error';
 			return;
 		}
@@ -234,8 +233,8 @@ const endpoint = '/api/poptavka';
 		accent-color: var(--green);
 	}
 
-	.consent a {
-		display: block;
+	.consent a,
+	dd a {
 		color: var(--green);
 	}
 

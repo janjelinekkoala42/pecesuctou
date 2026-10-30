@@ -1,0 +1,11 @@
+---
+import { contact, operator } from '../data/content';
+---
+
+<address>
+	{operator.name}<br />
+	IČO: {operator.ico}<br />
+	Sídlo: {operator.address}<br />
+	E-mail: <a href={`mailto:${contact.email}`}>{contact.email}</a><br />
+	Telefon: <a href={contact.phoneHref}>{contact.phone}</a>
+</address>
