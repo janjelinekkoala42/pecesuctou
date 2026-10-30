@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import heroPhoto from '../assets/work/uvod-vres-lucerna.jpg';
+
 const trust = [
 	{ icon: 'camera', text: 'Fotografie po každé návštěvě' },
 	{ icon: 'candle', text: 'Zapálení svíčky a položení květiny v každém balíčku' },
@@ -22,7 +25,15 @@ const trust = [
 				<a class="btn btn-outline" href="#kontakt">Nezávazně nás kontaktovat</a>
 			</div>
 		</div>
-		<div class="arch ph">[Foto: upravený hrob, květiny, svíčka – podvečerní světlo]</div>
+		<Image
+			class="arch"
+			src={heroPhoto}
+			alt="Mísa s vřesem, břečťanem a šiškami se zapálenou svíčkou v lucerně na hrobě"
+			widths={[480, 800, 1100]}
+			sizes="(max-width: 860px) 100vw, 480px"
+			loading="eager"
+			fetchpriority="high"
+		/>
 	</div>
 </section>
 
@@ -90,12 +101,13 @@ const trust = [
 	}
 
 	.arch {
+		width: 100%;
+		height: auto;
 		aspect-ratio: 4 / 5;
 		border-radius: 50% 50% 0 0 / 38% 38% 0 0;
 		background: var(--green);
-		color: #c9d3c8;
-		padding: 2.5rem;
-		line-height: 1.8;
+		object-fit: cover;
+		object-position: 50% 60%;
 	}
 
 	.trust {

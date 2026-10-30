@@ -1,5 +1,6 @@
 ---
-import { beforeAfter, testimonials } from '../data/content';
+import { Image } from 'astro:assets';
+import { beforeAfter, decorations, testimonials } from '../data/content';
 ---
 
 <section class="section" id="reference">
@@ -11,15 +12,32 @@ import { beforeAfter, testimonials } from '../data/content';
 			rodiny.
 		</p>
 
-		<div class="grid">
+		<div class="pairs">
 			{
-				beforeAfter.map((caption) => (
+				beforeAfter.map((item) => (
 					<figure>
 						<div class="pair">
-							<div class="before">Před</div>
-							<div class="after">Po</div>
+							<div class="half">
+								<Image src={item.before} alt={`Před: ${item.caption}`} widths={[320, 640]} sizes="(max-width: 860px) 50vw, 300px" />
+								<span>Před</span>
+							</div>
+							<div class="half">
+								<Image src={item.after} alt={`Po: ${item.caption}`} widths={[320, 640]} sizes="(max-width: 860px) 50vw, 300px" />
+								<span class="after">Po</span>
+							</div>
 						</div>
-						<figcaption>{caption}</figcaption>
+						<figcaption>{item.caption}</figcaption>
+					</figure>
+				))
+			}
+		</div>
+
+		<div class="gallery">
+			{
+				decorations.map((item) => (
+					<figure>
+						<Image src={item.photo} alt={item.alt} widths={[400, 800]} sizes="(max-width: 860px) 100vw, 600px" />
+						<figcaption>{item.caption}</figcaption>
 					</figure>
 				))
 			}
@@ -54,30 +72,55 @@ import { beforeAfter, testimonials } from '../data/content';
 		margin: 0;
 	}
 
+	.pairs,
+	.gallery {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem 1.5rem;
+		margin-top: 3rem;
+	}
+
 	.pair {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 3px;
-		aspect-ratio: 16 / 10;
+		aspect-ratio: 1 / 1;
 	}
 
-	.pair div {
-		display: flex;
-		align-items: flex-end;
-		padding: 0.75rem;
+	.half {
+		position: relative;
+		overflow: hidden;
+		background: var(--sand);
+	}
+
+	.half img,
+	.gallery img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.half span {
+		position: absolute;
+		left: 0.6rem;
+		bottom: 0.6rem;
+		padding: 0.3rem 0.6rem;
+		background: rgb(243 238 231 / 0.92);
+		color: var(--green);
 		font-size: 0.7rem;
 		font-weight: 600;
 		letter-spacing: 0.15em;
 		text-transform: uppercase;
-		color: var(--green);
 	}
 
-	.before {
-		background: var(--sand);
+	.half span.after {
+		background: var(--green);
+		color: #fff;
 	}
 
-	.after {
-		background: var(--sage);
+	.gallery img {
+		aspect-ratio: 4 / 5;
+		height: auto;
 	}
 
 	figcaption {
@@ -121,8 +164,13 @@ import { beforeAfter, testimonials } from '../data/content';
 	}
 
 	@media (max-width: 860px) {
-		.grid {
+		.grid,
+		.pairs {
 			grid-template-columns: 1fr;
+		}
+
+		.gallery {
+			gap: 1rem;
 		}
 	}
 </style>
