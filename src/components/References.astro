@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { beforeAfter, decorations, testimonials } from '../data/content';
+import { beforeAfter, testimonials } from '../data/content';
 ---
 
 <section class="section" id="reference">
@@ -36,17 +36,6 @@ import { beforeAfter, decorations, testimonials } from '../data/content';
 			}
 		</div>
 
-		<div class="gallery">
-			{
-				decorations.map((item) => (
-					<figure>
-						<Image src={item.photo} alt={item.alt} widths={[400, 800]} sizes="(max-width: 860px) 100vw, 600px" style={`object-position: ${item.position}`} />
-						<figcaption>{item.caption}</figcaption>
-					</figure>
-				))
-			}
-		</div>
-
 		<div class="grid quotes">
 			{
 				testimonials.map((t) => (
@@ -76,29 +65,19 @@ import { beforeAfter, decorations, testimonials } from '../data/content';
 		margin: 0;
 	}
 
-	.pairs,
-	.gallery {
+	.pairs {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 2rem 1.5rem;
-		margin-top: 3rem;
-	}
-
-	.gallery {
-		grid-template-columns: repeat(auto-fit, minmax(16rem, 26rem));
-		justify-content: center;
-	}
-
-	.pairs {
 		align-items: start;
+		margin-top: 3rem;
 	}
 
 	.shot {
 		position: relative;
 	}
 
-	.shot img,
-	.gallery img {
+	.shot img {
 		width: 100%;
 		height: auto;
 		display: block;
@@ -121,14 +100,6 @@ import { beforeAfter, decorations, testimonials } from '../data/content';
 
 	.label.after {
 		left: 75%;
-	}
-
-	.gallery img {
-		object-fit: cover;
-	}
-
-	.gallery img {
-		aspect-ratio: 4 / 5;
 	}
 
 	figcaption {
@@ -175,10 +146,6 @@ import { beforeAfter, decorations, testimonials } from '../data/content';
 		.grid,
 		.pairs {
 			grid-template-columns: 1fr;
-		}
-
-		.gallery {
-			gap: 1rem;
 		}
 	}
 </style>
