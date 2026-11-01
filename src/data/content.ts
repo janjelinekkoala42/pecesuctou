@@ -3,13 +3,12 @@
 import sestraPhoto from '../assets/team/sestra.jpg';
 import dencaPhoto from '../assets/team/denca.jpg';
 import floristkaPhoto from '../assets/team/floristka.jpg';
-import uklidPred from '../assets/work/uklid-pred.jpg';
-import jaroPred from '../assets/work/jaro-pred.jpg';
-import jaroPo from '../assets/work/jaro-po.jpg';
-import podzimPred from '../assets/work/podzim-pred.jpg';
-import podzimPo from '../assets/work/podzim-po.jpg';
-import dusickyPred from '../assets/work/dusicky-pred.jpg';
-import dusickyPo from '../assets/work/dusicky-po.jpg';
+import refZima from '../assets/work/reference-zima.jpg';
+import refJaro from '../assets/work/reference-jaro.jpg';
+import refDusicky from '../assets/work/reference-dusicky.jpg';
+import refPodzim from '../assets/work/reference-podzim.jpg';
+import refPodzimMech from '../assets/work/reference-podzim-mech.jpg';
+import refZarostly from '../assets/work/reference-zarostly.jpg';
 import vyzdobaAndel from '../assets/work/vyzdoba-andel.jpg';
 import vyzdobaKytice from '../assets/work/vyzdoba-kytice.jpg';
 
@@ -114,15 +113,19 @@ export const team = [
 	},
 ];
 
+// Koláže „před/po“. labels: true = fotka nemá vlastní štítky, web je doplní (vlevo Před, vpravo Po).
 export const beforeAfter = [
-	{ before: uklidPred, after: vyzdobaKytice, caption: 'Jednorázová péče · úklid a květinová výzdoba' },
-	{ before: jaroPred, after: jaroPo, caption: 'Jarní péče · úklid a květinová výzdoba' },
-	{ before: podzimPred, after: podzimPo, caption: 'Celoroční péče · podzimní úklid a výzdoba' },
-	{ before: dusickyPred, after: dusickyPo, caption: 'Dušičky · úklid, věnec a zapálené svíčky' },
+	{ photo: refZima, caption: 'Zimní péče · úklid a vánoční výzdoba', labels: false },
+	{ photo: refJaro, caption: 'Jarní péče · odplevelení, oblázky a jarní květiny', labels: false },
+	{ photo: refDusicky, caption: 'Dušičky · úklid hrobu a vřes', labels: true },
+	{ photo: refPodzim, caption: 'Podzimní péče · odstranění mechu a dušičková výzdoba', labels: true },
+	{ photo: refPodzimMech, caption: 'Podzimní péče · odstranění mechu a věnec', labels: false },
+	{ photo: refZarostly, caption: 'Úklid zarostlého hrobu · oblázky a vřes', labels: false },
 ];
 
 export const decorations = [
 	{ photo: vyzdobaAndel, alt: 'Zimní výzdoba hrobu s andělem, šiškami, oblázky a lucernou', caption: 'Zimní výzdoba' },
+	{ photo: vyzdobaKytice, alt: 'Květinová výzdoba hrobu s vřesem, růžemi a chryzantémami', caption: 'Květiny a dekorace' },
 ];
 
 // Reference od zákazníků (zveřejněné se souhlasem). Podle dodaných údajů: jen křestní jméno a služba.
