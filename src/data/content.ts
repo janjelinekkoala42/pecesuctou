@@ -21,7 +21,6 @@ export const contact = {
 export const operator = {
 	name: 'Denisa Skládalová',
 	ico: '21999651',
-	address: 'Podolská 423/20, 147 00 Praha – Podolí',
 };
 
 // Datum účinnosti obchodních podmínek a zásad zpracování osobních údajů.
