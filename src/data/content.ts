@@ -9,8 +9,8 @@ import refDusicky from '../assets/work/reference-dusicky.jpg';
 import refPodzim from '../assets/work/reference-podzim.jpg';
 import refPodzimMech from '../assets/work/reference-podzim-mech.jpg';
 import refZarostly from '../assets/work/reference-zarostly.jpg';
-import vyzdobaAndel from '../assets/work/vyzdoba-andel.jpg';
-import vyzdobaKytice from '../assets/work/vyzdoba-kytice.jpg';
+import vyzdobaZimni from '../assets/work/vyzdoba-zimni.jpg';
+import vyzdobaJarni from '../assets/work/vyzdoba-jarni.jpg';
 
 export const contact = {
 	phone: '777 623 231',
@@ -124,8 +124,8 @@ export const beforeAfter = [
 ];
 
 export const decorations = [
-	{ photo: vyzdobaAndel, alt: 'Zimní výzdoba hrobu s andělem, šiškami, oblázky a lucernou', caption: 'Zimní výzdoba' },
-	{ photo: vyzdobaKytice, alt: 'Květinová výzdoba hrobu s vřesem, růžemi a chryzantémami', caption: 'Květiny a dekorace' },
+	{ photo: vyzdobaZimni, position: '50% 62%', alt: 'Zimní výzdoba hrobu s chvojím, šiškou a jeřabinami a lucernou se zapálenou svíčkou', caption: 'Zimní výzdoba' },
+	{ photo: vyzdobaJarni, position: '50% 70%', alt: 'Jarní výzdoba hrobu s narcisy a maceškami v proutěném koši a lucernou na oblázcích', caption: 'Květiny a dekorace' },
 ];
 
 // Reference od zákazníků (zveřejněné se souhlasem). Podle dodaných údajů: jen křestní jméno a služba.
