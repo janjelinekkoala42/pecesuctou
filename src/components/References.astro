@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { beforeAfter, decorations, testimonials } from '../data/content';
+import { beforeAfter, testimonials } from '../data/content';
 ---
 
 <section class="section" id="reference">
@@ -16,27 +16,20 @@ import { beforeAfter, decorations, testimonials } from '../data/content';
 			{
 				beforeAfter.map((item) => (
 					<figure>
-						<div class="pair">
-							<div class="half">
-								<Image src={item.before} alt={`Před: ${item.caption}`} widths={[320, 640]} sizes="(max-width: 860px) 50vw, 300px" />
-								<span>Před</span>
-							</div>
-							<div class="half">
-								<Image src={item.after} alt={`Po: ${item.caption}`} widths={[320, 640]} sizes="(max-width: 860px) 50vw, 300px" />
-								<span class="after">Po</span>
-							</div>
+						<div class="shot">
+							<Image
+								src={item.photo}
+								alt={`Před a po péči: ${item.caption}`}
+								widths={[400, 700, 1100]}
+								sizes="(max-width: 860px) 100vw, 560px"
+							/>
+							{item.labels && (
+								<>
+									<span class="label before">Před péčí</span>
+									<span class="label after">Po péči</span>
+								</>
+							)}
 						</div>
-						<figcaption>{item.caption}</figcaption>
-					</figure>
-				))
-			}
-		</div>
-
-		<div class="gallery">
-			{
-				decorations.map((item) => (
-					<figure>
-						<Image src={item.photo} alt={item.alt} widths={[400, 800]} sizes="(max-width: 860px) 100vw, 600px" />
 						<figcaption>{item.caption}</figcaption>
 					</figure>
 				))
@@ -72,60 +65,41 @@ import { beforeAfter, decorations, testimonials } from '../data/content';
 		margin: 0;
 	}
 
-	.pairs,
-	.gallery {
+	.pairs {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 2rem 1.5rem;
+		align-items: start;
 		margin-top: 3rem;
 	}
 
-	.gallery {
-		grid-template-columns: repeat(auto-fit, minmax(16rem, 26rem));
-		justify-content: center;
-	}
-
-	.pair {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 3px;
-		aspect-ratio: 1 / 1;
-	}
-
-	.half {
+	.shot {
 		position: relative;
-		overflow: hidden;
-		background: var(--sand);
 	}
 
-	.half img,
-	.gallery img {
+	.shot img {
 		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
-	.half span {
-		position: absolute;
-		left: 0.6rem;
-		bottom: 0.6rem;
-		padding: 0.3rem 0.6rem;
-		background: rgb(243 238 231 / 0.92);
-		color: var(--green);
-		font-size: 0.7rem;
-		font-weight: 600;
-		letter-spacing: 0.15em;
-		text-transform: uppercase;
-	}
-
-	.half span.after {
-		background: var(--green);
-		color: #fff;
-	}
-
-	.gallery img {
-		aspect-ratio: 4 / 5;
 		height: auto;
+		display: block;
+	}
+
+	.label {
+		position: absolute;
+		bottom: 4%;
+		padding: 0.35rem 0.8rem;
+		border-radius: 999px;
+		background: rgb(243 238 231 / 0.94);
+		color: var(--text);
+		font-size: 0.85rem;
+		transform: translateX(-50%);
+	}
+
+	.label.before {
+		left: 25%;
+	}
+
+	.label.after {
+		left: 75%;
 	}
 
 	figcaption {
@@ -172,10 +146,6 @@ import { beforeAfter, decorations, testimonials } from '../data/content';
 		.grid,
 		.pairs {
 			grid-template-columns: 1fr;
-		}
-
-		.gallery {
-			gap: 1rem;
 		}
 	}
 </style>
