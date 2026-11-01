@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Stránka nenalezena – Péče s úctou" description="Tato stránka neexistuje.">
+	<meta name="robots" content="noindex" slot="head" />
+	<Header />
+	<main class="section">
+		<div class="wrap">
+			<p class="eyebrow">Chyba 404</p>
+			<h1>Tuto stránku jsme nenašli</h1>
+			<p class="lead">Odkaz je možná zastaralý nebo v něm je překlep.</p>
+			<p><a class="btn" href="/">Zpět na úvod</a></p>
+		</div>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.lead {
+		margin: 1rem 0 2rem;
+	}
+</style>
