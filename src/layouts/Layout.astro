@@ -3,7 +3,10 @@ import '@fontsource/cormorant-garamond/400.css';
 import '@fontsource/cormorant-garamond/400-italic.css';
 import '@fontsource/cormorant-garamond/500.css';
 import '@fontsource-variable/source-sans-3';
-import { environmentName, isProduction } from '../env';
+import { getImage } from 'astro:assets';
+import { environmentName, isProduction, PRODUCTION_URL } from '../env';
+import { contact, operator } from '../data/content';
+import heroPhoto from '../assets/work/uvod-vres-lucerna.jpg';
 
 interface Props {
 	title?: string;
@@ -14,14 +17,49 @@ const {
 	title = 'Péče s úctou – úklid a péče o hroby v Praze a okolí',
 	description = 'Péče s úctou – úklid, údržba a výzdoba hrobů v Praze a okolí. Jednorázově i pravidelně, s fotografiemi po každé návštěvě.',
 } = Astro.props;
+
+// Odkazy pro vyhledávače vždy míří na produkční doménu.
+const canonical = new URL(Astro.url.pathname, PRODUCTION_URL).href;
+const ogImage = await getImage({ src: heroPhoto, width: 1200, format: 'jpg' });
+const ogImageUrl = new URL(ogImage.src, PRODUCTION_URL).href;
+
+// Strukturované údaje o firmě pro Google (jen na úvodní stránce).
+const business = {
+	'@context': 'https://schema.org',
+	'@type': 'LocalBusiness',
+	name: 'Péče s úctou',
+	description: 'Úklid, údržba a výzdoba hrobů v Praze a okolí i v celé České republice.',
+	url: PRODUCTION_URL,
+	logo: `${PRODUCTION_URL}/icon-512.png`,
+	image: ogImageUrl,
+	telephone: '+420777623231',
+	email: contact.email,
+	areaServed: ['Praha', 'Česká republika'],
+	founder: { '@type': 'Person', name: operator.name },
+	identifier: { '@type': 'PropertyValue', propertyID: 'IČO', value: operator.ico },
+};
+const isHome = Astro.url.pathname === '/';
+const is404 = Astro.url.pathname.startsWith('/404');
 ---
 
 <html lang="cs">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+		{!is404 && <link rel="canonical" href={canonical} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="cs_CZ" />
+		<meta property="og:site_name" content="Péče s úctou" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImageUrl} />
+		{isHome && <script type="application/ld+json" set:html={JSON.stringify(business)} />}
+		<slot name="head" />
 		<meta name="theme-color" content="#1f3a2d" />
 		<meta name="generator" content={Astro.generator} />
 		{!isProduction && <meta name="robots" content="noindex, nofollow" />}
